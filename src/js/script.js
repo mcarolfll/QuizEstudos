@@ -957,10 +957,9 @@ function renderProfile() {
              <div class="level-badge">Nível ${state.user.level}</div>
            </div>
          </div>
-         <div class="profile-actions">
-           <button class="btn-delete" onclick="window.location.href='login.html'">Sair da Conta</button>
-
-         </div>
+        <div class="profile-actions">
+          <button class="btn-delete" onclick="window.location.href='Login.html'">Sair da Conta</button>
+        </div>
       </div>
     </section>
 
