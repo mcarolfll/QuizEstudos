@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuizEstudos</title>
+    <link rel="icon" type="image/png" href="../study.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar__header">
+          <div class="logo">QuizEstudos</div>
+        </div>
+        <nav class="sidebar__nav">
+          <button class="sidebar__item sidebar__item--active" data-view="dashboard">
+            <span class="sidebar__icon">🏠</span>
+            <span>Dashboard</span>
+          </button>
+          <button class="sidebar__item" data-view="quizzes">
+            <span class="sidebar__icon">🧩</span>
+            <span>Quizzes</span>
+          </button>
+          <button class="sidebar__item" data-view="performance">
+            <span class="sidebar__icon">📈</span>
+            <span>Desempenho</span>
+          </button>
+          <button class="sidebar__item" data-view="ranking">
+            <span class="sidebar__icon">🏅</span>
+            <span>Ranking</span>
+          </button>
+          <button class="sidebar__item" data-view="achievements">
+            <span class="sidebar__icon">🏆</span>
+            <span>Conquistas</span>
+          </button>
+          <button class="sidebar__item" data-view="notes">
+            <span class="sidebar__icon">📝</span>
+            <span>Anotações</span>
+          </button>
+          <button class="sidebar__item" data-view="profile">
+            <span class="sidebar__icon">👤</span>
+            <span>Perfil</span>
+          </button>
+        </nav>
+      </aside>
+
+      <div class="layout">
+        <header class="topbar">
+          <div class="topbar__left">
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>
+            </button>
+            <div class="topbar__breadcrumbs">
+              <span class="crumb" id="pageTitle">Dashboard</span>
+            </div>
+          </div>
+          <div class="topbar__center">
+            <div class="search">
+              <input id="searchInput" type="search" placeholder="Buscar quizzes..." />
+              <button class="search__btn">Buscar</button>
+            </div>
+          </div>
+          <div class="topbar__right">
+            <div class="xp-display">
+              <div class="xp-bar-container">
+                <div class="xp-bar" id="headerXpBar" style="width: 0%"></div>
+              </div>
+              <span class="xp-text" id="headerLevel">Lvl 1</span>
+            </div>
+            <div class="user-pill">
+              <div class="user-pill__avatar" id="userAvatar">S</div>
+              <div class="user-pill__info">
+                <span class="user-pill__name" id="userNameDisplay">Estudante</span>
+                <span class="user-pill__role" id="userXp">0 XP</span>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <main class="content" id="mainContent">
+          <!-- Views will be injected here by JavaScript -->
+        </main>
+      </div>
+    </div>
+
+    <script src="js/questions.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
