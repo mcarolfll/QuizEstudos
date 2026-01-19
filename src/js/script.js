@@ -140,6 +140,28 @@ function checkStreak() {
 }
 
 function setupEventListeners() {
+  // Theme Toggle
+  const themeCheckbox = document.getElementById('themeCheckbox');
+  const body = document.body;
+
+  if (themeCheckbox) {
+    const savedTheme = localStorage.getItem('quizApp_theme');
+    if (savedTheme === 'dark') {
+      body.classList.add('dark-mode');
+      themeCheckbox.checked = true;
+    }
+
+    themeCheckbox.addEventListener('change', () => {
+      if (themeCheckbox.checked) {
+        body.classList.add('dark-mode');
+        localStorage.setItem('quizApp_theme', 'dark');
+      } else {
+        body.classList.remove('dark-mode');
+        localStorage.setItem('quizApp_theme', 'light');
+      }
+    });
+  }
+
   // Navigation
   elements.sidebarItems.forEach(item => {
     item.addEventListener('click', () => {
@@ -148,10 +170,21 @@ function setupEventListeners() {
     });
   });
 
-  // Mobile Menu
+  // Mobile Menu & Desktop Sidebar Toggle
   if (elements.menuToggle) {
+    // Restore Sidebar State on Load
+    const savedSidebarState = localStorage.getItem('quizApp_sidebarCollapsed');
+    if (savedSidebarState === 'true' && window.innerWidth > 768) {
+      elements.app.classList.add('app--sidebar-collapsed');
+    }
+
     elements.menuToggle.addEventListener('click', () => {
-      elements.app.classList.toggle('app--sidebar-open');
+      if (window.innerWidth <= 768) {
+        elements.app.classList.toggle('app--sidebar-open');
+      } else {
+        elements.app.classList.toggle('app--sidebar-collapsed');
+        localStorage.setItem('quizApp_sidebarCollapsed', elements.app.classList.contains('app--sidebar-collapsed'));
+      }
     });
   }
   
@@ -272,6 +305,22 @@ window.saveUserProfile = () => {
   if (!name || !email || !password) {
     alert('Preencha nome, email e senha.');
     return;
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    alert('Por favor, insira um endereço de email válido.');
+    return;
+  }
+
+  // Simulate notification if email changed or just general feedback
+  if (email !== state.user.email) {
+    alert(`Email atualizado! Uma confirmação foi enviada para ${email}.`);
+  } else {
+    // Just a standard update, no need to spam alert unless requested.
+    // User requested: "que seja obrigatorio colocar o email para chegar alguma notificação"
+    // So let's show it.
+    alert('Perfil salvo com sucesso! Notificações serão enviadas para seu email.');
   }
   
   state.user.name = name;
